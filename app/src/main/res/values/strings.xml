@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">GreenSpot</string>
+    <string name="plant_title_hint">Enter a title for the plant.</string>
+    <string name="plant_title_label">Title</string>
+    <string name="plant_details_label">Details</string>
+    <string name="plant_solved_label">Solved</string>
+    <string name="plant_date_label">Date</string>
+    <string name="plant_date">Plant Date</string>
+    <string name="plant_title">Plant Title</string>
+
+</resources>
