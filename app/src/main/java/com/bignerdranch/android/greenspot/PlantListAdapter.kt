@@ -1,6 +1,7 @@
 package com.bignerdranch.android.greenspot
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +23,13 @@ class PlantHolder( // This class is a subclass of RecyclerView.ViewHolder. It ho
                 Toast.LENGTH_SHORT
             ).show() // Shows a Toast when the user clicks on the ViewHolder’s View.
         }
+
+        binding.plantSolved.visibility = if (plant.isSolved) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
+
     }
 }
 
