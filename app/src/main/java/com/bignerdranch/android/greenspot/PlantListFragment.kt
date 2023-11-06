@@ -27,7 +27,7 @@ class PlantListFragment : Fragment() { // This is the fragment code.
 
     private var _binding: FragmentPlantListBinding? = null
     private val binding
-        get() = checkNotNull(_binding) {
+        get() = checkNotNull(_binding) { // This is the binding code.
             "Cannot access binding because it is null. Is the view visible?"
         }
 
@@ -42,12 +42,12 @@ class PlantListFragment : Fragment() { // This is the fragment code.
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View? { // This is the view code.
         _binding = FragmentPlantListBinding.inflate(inflater, container, false)
 
         binding.plantRecyclerView.layoutManager = LinearLayoutManager(context)
 
-        return binding.root
+        return binding.root // This is the view that is returned.
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) { // This is the second lifecycle function called on a fragment.
@@ -78,7 +78,7 @@ class PlantListFragment : Fragment() { // This is the fragment code.
         inflater.inflate(R.menu.fragment_plant_list, menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean { // This is the code that is called when the user clicks the menu button.
         return when (item.itemId) {
             R.id.new_plant -> {
                 showNewPlant()
@@ -88,16 +88,16 @@ class PlantListFragment : Fragment() { // This is the fragment code.
         }
     }
 
-    private fun showNewPlant() {
+    private fun showNewPlant() { // This is the code that is called when the user clicks the new plant button.
         viewLifecycleOwner.lifecycleScope.launch {
             val newPlant = Plant(
                 id = UUID.randomUUID(),
                 title = "",
                 date = Date(),
-                isSolved = false
+                isSolved = false // TODO CHANGE TO PLACE
                 )
             plantListViewModel.addPlant(newPlant)
-            findNavController().navigate(
+            findNavController().navigate( // This is the navigation code.
                 PlantListFragmentDirections.showPlantDetail(newPlant.id)
             )
         }

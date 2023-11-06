@@ -8,16 +8,18 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class PlantListViewModel : ViewModel() {
-    private val plantRepository = PlantRepository.get()
+class PlantListViewModel : ViewModel() { /* this is a view model for the plant list fragment.
+ This is a view model.  It is a layer between the fragment and the repository.
+ */
+private val plantRepository = PlantRepository.get() // This is the repository.
 
-    private val _plants: MutableStateFlow<List<Plant>> = MutableStateFlow(emptyList())
+    private val _plants: MutableStateFlow<List<Plant>> = MutableStateFlow(emptyList()) // This is the list of plants.
     val plants: StateFlow<List<Plant>>
         get() = _plants.asStateFlow()
 
     init {
         viewModelScope.launch {
-            plantRepository.getPlants().collect {
+            plantRepository.getPlants().collect {// This is the coroutine code.
                 _plants.value = it
             }
         }

@@ -61,7 +61,7 @@ class PlantDetailFragment : Fragment() {
 
             plantSolved.setOnCheckedChangeListener { _, isChecked ->
                 plantDetailViewModel.updatePlant { oldPlant ->
-                    oldPlant.copy(isSolved = isChecked)
+                    oldPlant.copy(isSolved = isChecked) // TODO change to PLACE
                 }
             }
         }
@@ -105,7 +105,7 @@ class PlantDetailFragment : Fragment() {
                     PlantDetailFragmentDirections.selectDate(plant.date)
                 )
             }
-            plantSolved.isChecked = plant.isSolved
+            plantSolved.isChecked = plant.isSolved // TODO delete and change to Place
 
         }
     }

@@ -5,10 +5,10 @@ import androidx.room.PrimaryKey
 import java.util.Date
 import java.util.UUID
 @Entity
-data class Plant(
+data class Plant( // TODO ADD IMAGE GPS LOCATION AND CHANGE SOLVE TO PLACE
     @PrimaryKey val id: UUID,
     val title: String,
     val date: Date,
-    val isSolved: Boolean
+    val isSolved: Boolean // TODO CHANGE TO PLACE
 
 )

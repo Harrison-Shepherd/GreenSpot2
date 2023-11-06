@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import java.util.UUID
 
 
-private const val DATABASE_NAME = "crime-database" // @TODO CHANGE NAME TO PLANT-DATABASE
+private const val DATABASE_NAME = "plant-database"
 class PlantRepository  private constructor(
     context: Context,
     private val coroutineScope: CoroutineScope = GlobalScope
