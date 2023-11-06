@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 import com.bignerdranch.android.greenspot.Plant
 
 
-@Database(entities = [Plant::class], version = 8, exportSchema = false)
+@Database(entities = [Plant::class], version = 1, exportSchema = false)
 @TypeConverters(PlantTypeConverters::class)
 abstract class PlantDatabase : RoomDatabase() {
     abstract fun plantDao(): PlantDao

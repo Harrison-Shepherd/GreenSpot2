@@ -22,6 +22,11 @@ class PlantListViewModel : ViewModel() {
             }
         }
     }
+
+    suspend fun addPlant(plant: Plant) {
+        plantRepository.addPlant(plant)
+    }
+
 }
 
 

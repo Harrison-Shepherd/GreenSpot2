@@ -7,5 +7,12 @@
     <string name="plant_date_label">Date</string>
     <string name="plant_date">Plant Date</string>
     <string name="plant_title">Plant Title</string>
+    <string name="plant_details">Plant Details</string>
+    <string name="plant_solved">Plant Solved</string>
+    <string name="plant_report">Report Plant</string>
+    <string name="plant_reported">Plant Reported</string>
+    <string name="plant_reported_message">Plant has been reported.</string>
+    <string name="plant_reported_toast">Plant reported!</string>
+    <string name="new_plant">New Plant</string>
 
 </resources>
