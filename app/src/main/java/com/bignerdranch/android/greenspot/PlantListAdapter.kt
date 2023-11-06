@@ -9,19 +9,19 @@ import com.bignerdranch.android.greenspot.databinding.ListItemPlantBinding // Th
 
 
 
-class PlantHolder( // This class is a subclass of RecyclerView.ViewHolder. It holds a reference to the binding class instance.
+class PlantHolder(
     private val binding: ListItemPlantBinding
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(plant: Plant) { // Binds the plant’s data to the ViewHolder’s View.
+    fun bind(plant: Plant) {
         binding.plantTitle.text = plant.title
         binding.plantDate.text = plant.date.toString()
 
-        binding.root.setOnClickListener {// Sets up a click listener on the ViewHolder’s View.
+        binding.root.setOnClickListener {
             Toast.makeText(
                 binding.root.context,
-                "${plant.title} clicked!", // Shows a Toast when the user clicks on the ViewHolder’s View.
+                "${plant.title} clicked!",
                 Toast.LENGTH_SHORT
-            ).show() // Shows a Toast when the user clicks on the ViewHolder’s View.
+            ).show()
         }
 
         binding.plantSolved.visibility = if (plant.isSolved) {
@@ -29,30 +29,25 @@ class PlantHolder( // This class is a subclass of RecyclerView.ViewHolder. It ho
         } else {
             View.GONE
         }
-
     }
 }
 
-
-
-
-
-
-
-class PlantListAdapter( // This class is a subclass of RecyclerView.Adapter. It binds the data to the ViewHolder.
+class PlantListAdapter(
     private val plants: List<Plant>
-) : RecyclerView.Adapter<PlantHolder>() { // This class is a subclass of RecyclerView.Adapter. It binds the data to the ViewHolder.
-    override fun onCreateViewHolder( // This method is called by the RecyclerView when it needs a new ViewHolder to display an item with.
+) : RecyclerView.Adapter<PlantHolder>() {
+    override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ) : PlantHolder { // Creates a PlantHolder
+    ): PlantHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ListItemPlantBinding.inflate(inflater, parent, false)
-        return PlantHolder(binding) // Returns a PlantHolder
+        return PlantHolder(binding)
     }
-    override fun onBindViewHolder(holder: PlantHolder, position: Int) { // This method is called by the RecyclerView when it wants to bind a ViewHolder to a plant.
+
+    override fun onBindViewHolder(holder: PlantHolder, position: Int) {
         val plant = plants[position]
         holder.bind(plant)
     }
-    override fun getItemCount() = plants.size // This method tells the RecyclerView how many items are in the list.
+
+    override fun getItemCount() = plants.size
 }
