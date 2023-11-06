@@ -36,7 +36,8 @@ class PlantDetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentPlantDetailBinding.inflate(inflater, container, false)
+        _binding =
+            FragmentPlantDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 

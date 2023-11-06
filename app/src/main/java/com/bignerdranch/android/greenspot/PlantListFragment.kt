@@ -7,9 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bignerdranch.android.greenspot.databinding.FragmentPlantListBinding
-
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 private const val TAG = "PlantListFragment"
 
@@ -23,12 +27,6 @@ class PlantListFragment : Fragment(){
 
     private val plantListViewModel: PlantListViewModel by viewModels () // Creates a PlantListViewModel
 
-
-    override fun onCreate(savedInstanceState: Bundle?) { // Prepares the layout and initializes the fragment’s data.
-        super.onCreate(savedInstanceState)
-        Log.d(TAG, "Total plants: ${plantListViewModel.plants.size}")
-    }
-
     override fun onCreateView( // This is the first method called when the fragment is created. Inflates the layout and returns the root view.
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -38,11 +36,22 @@ class PlantListFragment : Fragment(){
 
         binding.plantRecyclerView.layoutManager = LinearLayoutManager(context) // Sets up the RecyclerView’s layout manager and adapter.
 
-        val plants = plantListViewModel.plants
-        val adapter = PlantListAdapter(plants)
-        binding.plantRecyclerView.adapter = adapter // Sets up the RecyclerView’s layout manager and adapter.
+
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                plantListViewModel.plants.collect { plants ->
+                    binding.plantRecyclerView.adapter =
+                        PlantListAdapter(plants)
+                }
+            }
+        }
     }
 
     override fun onDestroyView() { // This is the last method called when the fragment is destroyed. Cleans up any references to the binding class instance.
