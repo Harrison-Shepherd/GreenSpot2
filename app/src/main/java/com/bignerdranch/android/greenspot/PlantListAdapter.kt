@@ -6,22 +6,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bignerdranch.android.greenspot.databinding.ListItemPlantBinding // This is the binding class for the list item layout.
-
+import java.util.UUID
 
 
 class PlantHolder(
     private val binding: ListItemPlantBinding
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(plant: Plant) {
+    fun bind(plant: Plant, onPlantClicked: (plantId: UUID) -> Unit) {
         binding.plantTitle.text = plant.title
         binding.plantDate.text = plant.date.toString()
 
         binding.root.setOnClickListener {
-            Toast.makeText(
-                binding.root.context,
-                "${plant.title} clicked!",
-                Toast.LENGTH_SHORT
-            ).show()
+            onPlantClicked(plant.id)
         }
 
         binding.plantSolved.visibility = if (plant.isSolved) {
@@ -33,7 +29,8 @@ class PlantHolder(
 }
 
 class PlantListAdapter(
-    private val plants: List<Plant>
+    private val plants: List<Plant>,
+    private val onPlantClicked: (plantId: UUID) -> Unit
 ) : RecyclerView.Adapter<PlantHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -46,7 +43,7 @@ class PlantListAdapter(
 
     override fun onBindViewHolder(holder: PlantHolder, position: Int) {
         val plant = plants[position]
-        holder.bind(plant)
+        holder.bind(plant, onPlantClicked)
     }
 
     override fun getItemCount() = plants.size

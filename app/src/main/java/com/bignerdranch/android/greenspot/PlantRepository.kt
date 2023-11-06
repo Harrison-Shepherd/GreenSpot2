@@ -17,7 +17,7 @@ class PlantRepository private constructor(context: Context) {
             DATABASE_NAME
         )
         .createFromAsset(DATABASE_NAME)
-        
+        .fallbackToDestructiveMigration()
         .build()
 
     fun getPlants(): Flow<List<Plant>> = database.plantDao().getPlants()
